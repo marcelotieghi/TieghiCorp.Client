@@ -1,6 +1,5 @@
 ﻿using System.Net.Http.Json;
 using TieghiCorp.UI.Core.Api;
-using TieghiCorp.UI.Core.Models;
 using TieghiCorp.UI.Core.Models.Abstract;
 
 namespace TieghiCorp.UI.Core.Services;
@@ -37,13 +36,9 @@ public class Services<TEntity>(HttpClient http) : IServices<TEntity> where TEnti
     {
         try
         {
-            url += $"/update/{entity.Id}";
+            url += $"/{entity.Id}";
 
-            var url2 = "/update/2";
-
-            var l = new Location() { Id = entity.Id, Name = entity.BaseName };
-
-            var result = await _http.PutAsJsonAsync(url2, l, cancellationToken);
+            var result = await _http.PutAsJsonAsync(url, entity, cancellationToken);
 
             if (result.IsSuccessStatusCode)
                 return new ApiResult(true, "Update completed successfully.");
@@ -65,7 +60,7 @@ public class Services<TEntity>(HttpClient http) : IServices<TEntity> where TEnti
     {
         try
         {
-            url += $"/delete/{id}";
+            url += $"/{id}";
 
             var result = await _http.DeleteAsync(url, cancellationToken);
 

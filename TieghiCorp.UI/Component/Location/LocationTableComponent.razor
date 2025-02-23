@@ -1,0 +1,84 @@
+﻿@using TieghiCorp.UI.Component.Shared
+@using TieghiCorp.UI.Component.Shared.Buttons
+
+@inherits TableComponent<Core.Models.Location>
+
+<TableComponent 
+    TModel="Core.Models.Location"
+    @ref="Table"
+    ServerReloadAsync="LoadLocationData"
+    RowEditPreview="BackupItem"
+    RowEditCancel="ResetItemToOriginalValues"
+    RowEditCommit="ItemHasBeenCommitted">
+
+    <ToolBarTemplate>
+        
+        <CreateButtonComponent
+            Href="/locations/add"
+            ButtonName="New Location"/>
+
+    </ToolBarTemplate>
+
+    <HeaderTemplate>
+        <MudTh>
+            Nr
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel 
+                T="Core.Models.Location"
+                SortLabel="id">
+                Id
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel 
+                T="Core.Models.Location"
+                SortLabel="name">
+                Name
+            </MudTableSortLabel>
+        </MudTh>
+    </HeaderTemplate>
+
+    <RowTemplate>
+        <MudTd DataLabel="Nr">
+            @context.Nr
+        </MudTd>
+        <MudTd DataLabel="Id">
+            @context.Id
+        </MudTd>
+        <MudTd DataLabel="Name">
+            @context.Name
+        </MudTd>
+    </RowTemplate>
+
+    <RowEditingTemplate>
+        <MudTd DataLabel="Nr">
+            @context.Nr
+        </MudTd>
+        <MudTd DataLabel="Id">
+            @context.Id
+        </MudTd>
+        <MudTd DataLabel="Name">
+            <MudTextField 
+                @bind-Value="context.Name" 
+                Immediate="true"
+                HelperText="Field required"
+                For="@(() => context.Name)" />
+        </MudTd>
+    </RowEditingTemplate>
+
+        <ButtonContent Context="button">
+        <MudGrid Spacing="0" Justify="Justify.SpaceAround">
+            
+            <EditButtonComponent 
+                TModel="Core.Models.Location"
+                Button="button"/>
+
+            <DeleteButtonComponent
+                TModel="Core.Models.Location"
+                Button="button"
+                OnDeleteSuccess="ReloadTable"/>
+
+        </MudGrid>
+    </ButtonContent>
+</TableComponent>

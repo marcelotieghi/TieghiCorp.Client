@@ -1,0 +1,29 @@
+﻿@using TieghiCorp.UI.Component.Shared.Field
+
+<FormComponent TModel="Core.Models.Department" Model="@InputModel" Title="New Department">
+    <Inputs>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField
+                    @bind-Value="InputModel.Name"
+                    Label="Name"
+                    Variant="Variant.Outlined"
+                    MaxLength="100"
+                    Counter="100"
+                    Immediate="true"
+                    HelperText="Field required!"
+                    Clearable="true"
+                    For="@(() => InputModel.Name)"/>
+            </MudItem>
+            <MudItem xs="12">
+                <AutoCompleteComponent
+                    TModel="Core.Models.Location"
+                    Label="Locations"
+                    Variant="Variant.Outlined"
+                    SelectedItem="@InputModel.Location"
+                    SelectedItemChanged="@((Core.Models.Location? l) => InputModel.Location = l)"
+                    Validation="@(new Func<string, IEnumerable<string>>(Validate))"/>
+            </MudItem>
+        </MudGrid>
+    </Inputs>
+</FormComponent>

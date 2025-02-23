@@ -1,0 +1,9 @@
+﻿@typeparam TModel
+@inherits EditButtonComponent<TModel>
+
+<MudIconButton Size="@Size.Medium"
+               Icon="@Icon"
+               Color="Color.Error"
+               Class="pa-0"
+               OnClick="@(() => OpenDialogAsync((TModel)Button.Item!))"
+               Disabled="@Button.ButtonDisabled" />

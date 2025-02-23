@@ -1,0 +1,19 @@
+﻿@typeparam TModel
+
+<MudAutocomplete 
+    T="TModel"
+    Value="SelectedItem"
+    ValueChanged="OnSelectedItemChanged"
+    ToStringFunc="@(e => e == null ? null : $"{e.BaseName}")"
+    SearchFunc="@Search"
+    Clearable="true"
+    DebounceInterval="500"
+    ShowProgressIndicator="true"
+    HelperText="Field required"
+    Variant="@Variant"
+    Label="@Label"
+    Validation="@Validation">
+    <ProgressIndicatorTemplate>
+        <MudProgressLinear Size="Size.Small" Indeterminate="true" Color="Color.Info" />
+    </ProgressIndicatorTemplate>
+</MudAutocomplete>

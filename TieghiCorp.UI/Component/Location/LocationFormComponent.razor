@@ -1,0 +1,19 @@
+﻿@using TieghiCorp.UI.Component.Shared.Field
+
+<FormComponent TModel="Core.Models.Location" Model="@InputModel" Title="New Location">
+    <Inputs>
+        <MudTextField
+            @bind-Value="InputModel.Name"
+            Label="Name"
+            Variant="Variant.Outlined"
+            MaxLength="100"
+            Counter="100"
+            Immediate="true"
+            HelperText="Field required"
+            For="@(() => InputModel.Name)"/>
+    </Inputs>
+</FormComponent>
+
+@code {
+    protected Core.Models.Location InputModel { get; set; } = new();
+}

@@ -1,0 +1,10 @@
+﻿@using TieghiCorp.UI.Core.Models.Abstract
+
+@typeparam TModel where TModel : BaseModel
+
+<MudIconButton Size="@Size.Medium"
+               Icon="@Icons.Material.Outlined.Edit"
+               Color="Color.Info"
+               Class="pa-0"
+               OnClick="@Button.ButtonAction"
+               Disabled="@Button.ButtonDisabled" />

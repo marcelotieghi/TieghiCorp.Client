@@ -1,0 +1,99 @@
+﻿@using TieghiCorp.UI.Component.Shared
+@using TieghiCorp.UI.Component.Shared.Buttons
+@using TieghiCorp.UI.Component.Shared.Field
+
+@inherits TableComponent<Core.Models.Department>
+
+<TableComponent TModel="Core.Models.Department"
+                @ref="Table"
+                ServerReloadAsync="LoadDepartmentnData"
+                RowEditPreview="BackupItem"
+                RowEditCancel="ResetItemToOriginalValues"
+                RowEditCommit="ItemHasBeenCommitted">
+
+    <ToolBarTemplate>
+
+        <CreateButtonComponent Href="/departments/add"
+                               ButtonName="New Department" />
+
+    </ToolBarTemplate>
+
+    <HeaderTemplate>
+        <MudTh>
+            Nr
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel 
+                T="Core.Models.Department"
+                SortLabel="id">
+                Id
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel 
+                T="Core.Models.Department"
+                SortLabel="name">
+                Name
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel 
+                T="Core.Models.Department"
+                SortLabel="location">
+                Location
+            </MudTableSortLabel>
+        </MudTh>
+    </HeaderTemplate>
+
+    <RowTemplate>
+        <MudTd DataLabel="Nr">
+            @context.Nr
+        </MudTd>
+        <MudTd DataLabel="Id">
+            @context.Id
+        </MudTd>
+        <MudTd DataLabel="Name">
+            @context.Name
+        </MudTd>
+        <MudTd DataLabel="Location">
+            @context.Location!.Name
+        </MudTd>
+    </RowTemplate>
+
+    <RowEditingTemplate>
+         <MudTd DataLabel="Nr">
+            @context.Nr
+        </MudTd>
+        <MudTd DataLabel="Id">
+            @context.Id
+        </MudTd>
+        <MudTd DataLabel="Department">
+            <MudTextField 
+                @bind-Value="context.Name" 
+                Clearable="true"
+                HelperText="Field required"
+                For="@(() => context.Name)"/>
+        </MudTd>
+        <MudTd DataLabel="Location">
+            <AutoCompleteComponent 
+                TModel="Core.Models.Location"
+                Variant="Variant.Text"
+                Label=""
+                SelectedItem="@context.Location"
+                SelectedItemChanged="@((Core.Models.Location? loc) => context.Location = loc)"/>
+        </MudTd>
+    </RowEditingTemplate>
+
+    <ButtonContent Context="button">
+        <MudGrid Spacing="0" Justify="Justify.SpaceAround">
+
+            <EditButtonComponent TModel="Core.Models.Location"
+                                 Button="button" />
+
+            <DeleteButtonComponent TModel="Core.Models.Location"
+                                   Button="button"
+                                   OnDeleteSuccess="ReloadTable" />
+
+        </MudGrid>
+    </ButtonContent>
+</TableComponent>

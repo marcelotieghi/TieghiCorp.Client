@@ -1,0 +1,62 @@
+﻿@using TieghiCorp.UI.Component.Shared.Buttons
+@using TieghiCorp.UI.Core.Models.Abstract
+
+@inherits EditButtonComponent<TModel>
+@typeparam TModel
+
+@if (ServerReloadAsync is not null)
+{
+    <MudTable T="TModel"
+              @ref="TableRef"
+              ServerData="@ServerReloadAsync"
+              Class="mt-4"
+              Hover="true"
+              Bordered="true"
+              FixedHeader="true"
+              SelectOnRowClick="true"
+              CommitEditTooltip="Save"
+              CanCancelEdit="true"
+              IsEditRowSwitchingBlocked="true"
+              EditTrigger="TableEditTrigger.EditButton"
+              RowEditPreview="@RowEditPreview"
+              RowEditCancel="@RowEditCancel"
+              RowEditCommit="@RowEditCommit">
+
+        <ColGroup>
+            <col style="width:150px" />
+            <col style="width: 150px" />
+            <col style="width:auto;" />
+        </ColGroup>
+
+        <ToolBarContent>
+            @ToolBarTemplate
+        </ToolBarContent>
+
+        <HeaderContent>
+            @HeaderTemplate
+        </HeaderContent>
+
+        <RowTemplate>
+            @RowTemplate(context)
+        </RowTemplate>
+
+        <RowEditingTemplate>
+            @RowEditingTemplate(context)
+        </RowEditingTemplate>
+
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+
+        <EditButtonContent Context="button">
+            @ButtonContent(button)
+        </EditButtonContent>
+
+    </MudTable>
+}
+
+<style>
+    table tbody tr td:last-child {
+        width: 200px;
+    }
+</style>
