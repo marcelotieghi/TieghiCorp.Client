@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using TieghiCorp.UI.Core.Api;
 using TieghiCorp.UI.Core.Models.Abstract;
 using TieghiCorp.UI.Core.Services;
 
@@ -65,13 +66,13 @@ public partial class AutoCompleteComponent<TModel> : ComponentBase where TModel 
                 if (InitialLocations.Count != 0)
                     return InitialLocations;
 
-                var result = await Services.ListAsync("v1/locations", 1, 25, cancellationToken: token);
+                var result = await Services.ListAsync(ApiRoutes.GetUrl<TModel>(), 1, 25, cancellationToken: token);
                 InitialLocations = result.Data.ToList();
 
                 return InitialLocations;
             }
 
-            var locations = await Services.ListAsync("v1/locations", 1, 25, searchTerm: value, cancellationToken: token);
+            var locations = await Services.ListAsync(ApiRoutes.GetUrl<TModel>(), 1, 25, searchTerm: value, cancellationToken: token);
             return locations.Data;
         }
         finally

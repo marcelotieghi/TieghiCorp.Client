@@ -22,16 +22,18 @@
             }
             else
             {
-                <MudButton Class="me-2"
-                           OnClick="HandleCancel"
-                           Variant="Variant.Filled"
-                           Color="Color.Error">
+                <MudButton 
+                    Class="me-2"
+                    OnClick="HandleCancel"
+                    Variant="Variant.Filled"
+                    Color="Color.Error">
                     Cancel
                 </MudButton>
-                <MudButton OnClick="HandleSave"
-                           Variant="Variant.Filled"
-                           Color="Color.Success"
-                           Disabled="@(!IsFormValid())">
+                <MudButton 
+                    OnClick="HandleSave"
+                    Variant="Variant.Filled"
+                    Color="Color.Success"
+                    Disabled="@(!IsFormValid())">
                     Save
                 </MudButton>
             }

@@ -6,7 +6,9 @@ public static class ApiRoutes
 {
     private static readonly Dictionary<Type, string> ModelUrls = new()
     {
-        { typeof(Location), "v1/locations" }
+        { typeof(Location), "v1/locations" },
+        { typeof(Department), "v1/departments" },
+        { typeof(Personnel), "v1/personnel" }
     };
 
     public static string GetUrl<TModel>()

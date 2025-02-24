@@ -87,12 +87,14 @@
     <ButtonContent Context="button">
         <MudGrid Spacing="0" Justify="Justify.SpaceAround">
 
-            <EditButtonComponent TModel="Core.Models.Location"
-                                 Button="button" />
+            <EditButtonComponent 
+                TModel="Core.Models.Department"
+                Button="button" />
 
-            <DeleteButtonComponent TModel="Core.Models.Location"
-                                   Button="button"
-                                   OnDeleteSuccess="ReloadTable" />
+            <DeleteButtonComponent 
+                TModel="Core.Models.Department"
+                Button="button"
+                OnDeleteSuccess="ReloadTable" />
 
         </MudGrid>
     </ButtonContent>

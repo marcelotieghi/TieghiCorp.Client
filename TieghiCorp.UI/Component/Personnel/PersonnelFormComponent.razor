@@ -1,0 +1,60 @@
+﻿@using TieghiCorp.UI.Component.Shared.Field
+
+<FormComponent TModel="Core.Models.Personnel" Model="@InputModel" Title="New Department">
+    <Inputs>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField @bind-Value="InputModel.Firstname"
+                              Label="Firstname"
+                              Variant="Variant.Outlined"
+                              MaxLength="100"
+                              Counter="100"
+                              Immediate="true"
+                              HelperText="Field required!"
+                              Clearable="true"
+                              For="@(() => InputModel.Firstname)" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField @bind-Value="InputModel.Lastname"
+                              Label="Lastname"
+                              Variant="Variant.Outlined"
+                              MaxLength="100"
+                              Counter="100"
+                              Immediate="true"
+                              HelperText="Field required!"
+                              Clearable="true"
+                              For="@(() => InputModel.Lastname)" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField @bind-Value="InputModel.Email"
+                              Label="Email"
+                              Variant="Variant.Outlined"
+                              MaxLength="100"
+                              Counter="100"
+                              Immediate="true"
+                              HelperText="Field required!"
+                              Clearable="true"
+                              For="@(() => InputModel.Email)" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField @bind-Value="InputModel.JobTitle"
+                              Label="Job Title"
+                              Variant="Variant.Outlined"
+                              MaxLength="100"
+                              Counter="100"
+                              Immediate="true"
+                              HelperText="Field required!"
+                              Clearable="true"
+                              For="@(() => InputModel.JobTitle)" />
+            </MudItem>
+            <MudItem xs="12">
+                <AutoCompleteComponent TModel="Core.Models.Department"
+                                       Label="Departments"
+                                       Variant="Variant.Outlined"
+                                       SelectedItem="@InputModel.Department"
+                                       SelectedItemChanged="@((Core.Models.Department? l) => InputModel.Department = l)"
+                                       Validation="@(new Func<string, IEnumerable<string>>(Validate))" />
+            </MudItem>
+        </MudGrid>
+    </Inputs>
+</FormComponent>

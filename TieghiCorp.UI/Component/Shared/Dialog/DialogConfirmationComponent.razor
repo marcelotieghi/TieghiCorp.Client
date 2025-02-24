@@ -6,7 +6,20 @@
         <h4>@ContentText</h4>
     </DialogContent>
     <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="@Color" OnClick="Submit">@ButtonText</MudButton>
+
+        <MudButton 
+            OnClick="HandleCancel"
+            Variant="Variant.Filled"
+            Color="Color.Error">
+            Cancel
+        </MudButton>
+
+        <MudButton 
+            OnClick="HandleSubmit"
+            Variant="Variant.Filled"
+            Color="@Color">
+            @ButtonText
+        </MudButton>
+
     </DialogActions>
 </MudDialog>

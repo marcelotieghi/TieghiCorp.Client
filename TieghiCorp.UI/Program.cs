@@ -22,7 +22,8 @@ builder
 builder
     .Services
     .AddScoped<IServices<Location>, Services<Location>>()
-    .AddScoped<IServices<Department>, Services<Department>>();
+    .AddScoped<IServices<Department>, Services<Department>>()
+    .AddScoped<IServices<Personnel>, Services<Personnel>>();
 
 builder
     .Services

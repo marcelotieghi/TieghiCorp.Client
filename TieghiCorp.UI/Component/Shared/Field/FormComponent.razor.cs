@@ -8,22 +8,34 @@ namespace TieghiCorp.UI.Component.Shared.Field;
 
 public partial class FormComponent<TModel> where TModel : BaseModel
 {
+    #region Paramenters
 
-    // Parameters
     [Parameter] public required RenderFragment Inputs { get; set; }
     [Parameter] public object? Model { get; set; }
     [Parameter] public string Title { get; set; } = string.Empty;
 
-    // Properties
+    #endregion
+
+    #region Properties
+
     private bool IsBusy { get; set; }
     private MudForm? EditForm { get; set; }
 
-    // Services
-    [Inject] public IServices<TModel> Handler { get; set; } = null!;
-    [Inject] public ISnackbar Snackbar { get; set; } = null!;
-    [Inject] public NavigationManager NavigationManager { get; set; } = null!;
+    #endregion
 
-    // Handle Save Operation
+    #region Services
+
+    [Inject]
+    public IServices<TModel> Handler { get; set; } = null!;
+    [Inject]
+    public ISnackbar Snackbar { get; set; } = null!;
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = null!;
+
+    #endregion
+
+    #region Methods
+
     private async Task HandleSave()
     {
         IsBusy = true;
@@ -54,15 +66,9 @@ public partial class FormComponent<TModel> where TModel : BaseModel
         }
     }
 
-    // Handle Cancel Operation
-    private void HandleCancel()
-    {
-        NavigationManager.NavigateTo($"{typeof(TModel).Name}s");
-    }
+    private void HandleCancel() => NavigationManager.NavigateTo($"{typeof(TModel).Name}s");
 
-    private bool IsFormValid()
-    {
-        // Verifica se o EditForm e seu EditContext são válidos
-        return EditForm?.IsValid ?? false;
-    }
+    private bool IsFormValid() => EditForm?.IsValid ?? false;
+
+    #endregion
 }

@@ -26,7 +26,7 @@ public partial class DialogConfirmationComponent : ComponentBase
     [Parameter]
     public Color Color { get; set; } = Color.Primary;
 
-    private async Task Submit()
+    private async Task HandleSubmit()
     {
         if (OnConfirm.HasDelegate)
         {
@@ -35,7 +35,7 @@ public partial class DialogConfirmationComponent : ComponentBase
         MudDialog?.Close(DialogResult.Ok(true));
     }
 
-    private async Task Cancel()
+    private async Task HandleCancel()
     {
         if (OnCancel.HasDelegate)
         {
