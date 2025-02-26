@@ -1,4 +1,4 @@
-﻿@page "/departments"
+﻿@page "/department"
 
 @using TieghiCorp.UI.Component.Department
 @using TieghiCorp.UI.Component.Shared.Buttons
@@ -6,6 +6,9 @@
 <div class="d-flex justify-space-between mt-5">
     <HomeButtonComponent/>
     <MudText Typo="Typo.h3">Departments</MudText>
+    <div></div>
 </div>
 
-<DepartmentTableComponent />
+<div class="table-wrapper">
+    <DepartmentTableComponent />
+</div>

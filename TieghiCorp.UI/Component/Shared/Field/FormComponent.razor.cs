@@ -48,7 +48,7 @@ public partial class FormComponent<TModel> where TModel : BaseModel
             if (result.Success)
             {
                 Snackbar.Add($"{typeof(TModel).Name} created successfully", Severity.Success);
-                NavigationManager.NavigateTo($"{typeof(TModel).Name}s");
+                NavigationManager.NavigateTo($"{typeof(TModel).Name}");
             }
             else
             {

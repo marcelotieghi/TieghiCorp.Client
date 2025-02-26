@@ -1,0 +1,73 @@
+﻿/* Reset CSS */
+
+/* Apply box-sizing border-box to all elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Remove link decorations */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Base font styles and smoothing */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default button styles */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* Ensure images do not exceed their container */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Adjustments for form elements */
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+}
+
+/* Ensure correct display of HTML5 elements */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+    display: block;
+}
