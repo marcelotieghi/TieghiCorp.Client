@@ -20,9 +20,6 @@
 
     <HeaderTemplate>
         <MudTh>
-            Nr
-        </MudTh>
-        <MudTh>
             <MudTableSortLabel T="Core.Models.Personnel"
                                SortLabel="id">
                 Id
@@ -30,8 +27,14 @@
         </MudTh>
         <MudTh>
             <MudTableSortLabel T="Core.Models.Personnel"
-                               SortLabel="fullname">
-                Full Name
+                               SortLabel="Firstname">
+                Firstname
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel T="Core.Models.Personnel"
+                               SortLabel="Lastname">
+                Lastname
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
@@ -55,14 +58,14 @@
     </HeaderTemplate>
 
     <RowTemplate>
-        <MudTd DataLabel="Nr">
-            @context.Nr
-        </MudTd>
         <MudTd DataLabel="Id">
             @context.Id
         </MudTd>
         <MudTd DataLabel="Fullname">
-            @context.Fullname
+            @context.Firstname
+        </MudTd>
+        <MudTd DataLabel="Fullname">
+            @context.Lastname
         </MudTd>
         <MudTd DataLabel="Email">
             @context.Email
@@ -76,34 +79,27 @@
     </RowTemplate>
 
     <RowEditingTemplate>
-        <MudTd DataLabel="Nr">
-            @context.Nr
-        </MudTd>
         <MudTd DataLabel="Id">
             @context.Id
         </MudTd>
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.Firstname"
                           Clearable="true"
-                          HelperText="Field required"
                           For="@(() => context.Firstname)" />
         </MudTd>
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.Lastname"
                           Clearable="true"
-                          HelperText="Field required"
                           For="@(() => context.Lastname)" />
         </MudTd>
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.Email"
                           Clearable="true"
-                          HelperText="Field required"
                           For="@(() => context.Email)" />
         </MudTd>
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.JobTitle"
                           Clearable="true"
-                          HelperText="Field required"
                           For="@(() => context.JobTitle)" />
         </MudTd>
         <MudTd DataLabel="Department">

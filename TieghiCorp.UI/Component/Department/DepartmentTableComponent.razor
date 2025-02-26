@@ -20,9 +20,6 @@
 
     <HeaderTemplate>
         <MudTh>
-            Nr
-        </MudTh>
-        <MudTh>
             <MudTableSortLabel 
                 T="Core.Models.Department"
                 SortLabel="id">
@@ -46,9 +43,6 @@
     </HeaderTemplate>
 
     <RowTemplate>
-        <MudTd DataLabel="Nr">
-            @context.Nr
-        </MudTd>
         <MudTd DataLabel="Id">
             @context.Id
         </MudTd>
@@ -61,9 +55,6 @@
     </RowTemplate>
 
     <RowEditingTemplate>
-         <MudTd DataLabel="Nr">
-            @context.Nr
-        </MudTd>
         <MudTd DataLabel="Id">
             @context.Id
         </MudTd>

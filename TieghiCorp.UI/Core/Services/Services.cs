@@ -123,18 +123,9 @@ public class Services<TEntity>(HttpClient http) : IServices<TEntity> where TEnti
             };
         }
 
-        var startNumber = (page - 1) * pageSize + 1;
-
-        var numberedData = result.Data
-            .Select((location, index) =>
-            {
-                location.Nr = startNumber + index;
-                return location;
-            }).ToList();
-
         return new ApiPagedResult<TEntity>
         {
-            Data = numberedData,
+            Data = result.Data,
             TotalCount = result.TotalCount
         };
     }
