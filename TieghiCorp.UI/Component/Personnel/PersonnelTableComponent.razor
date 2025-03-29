@@ -13,45 +13,38 @@
 
     <ToolBarTemplate>
 
-        <CreateButtonComponent Href="/personnel/add"
-                               ButtonName="New Personnel" />
+        <CreateButtonComponent TModel="Core.Models.Personnel" ButtonName="New Personnel" />
 
     </ToolBarTemplate>
 
     <HeaderTemplate>
         <MudTh>
-            <MudTableSortLabel T="Core.Models.Personnel"
-                               SortLabel="id">
+            <MudTableSortLabel T="Core.Models.Personnel" SortLabel="id">
                 Id
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel T="Core.Models.Personnel"
-                               SortLabel="Firstname">
+            <MudTableSortLabel T="Core.Models.Personnel" SortLabel="Firstname">
                 Firstname
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel T="Core.Models.Personnel"
-                               SortLabel="Lastname">
+            <MudTableSortLabel T="Core.Models.Personnel" SortLabel="Lastname">
                 Lastname
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel T="Core.Models.Personnel"
-                               SortLabel="email">
+            <MudTableSortLabel T="Core.Models.Personnel" SortLabel="email">
                 Email
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel T="Core.Models.Personnel"
-                               SortLabel="jobtitle">
+            <MudTableSortLabel T="Core.Models.Personnel" SortLabel="jobtitle">
                 Job Title
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel T="Core.Models.Department"
-                               SortLabel="department">
+            <MudTableSortLabel T="Core.Models.Department"SortLabel="department">
                 Department
             </MudTableSortLabel>
         </MudTh>
@@ -85,29 +78,35 @@
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.Firstname"
                           Clearable="true"
+                          HelperText="Field required"
                           For="@(() => context.Firstname)" />
         </MudTd>
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.Lastname"
                           Clearable="true"
+                          HelperText="Field required"
                           For="@(() => context.Lastname)" />
         </MudTd>
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.Email"
                           Clearable="true"
+                          HelperText="Field required"
                           For="@(() => context.Email)" />
         </MudTd>
         <MudTd DataLabel="Personnel">
             <MudTextField @bind-Value="context.JobTitle"
                           Clearable="true"
+                          HelperText="Field required"
                           For="@(() => context.JobTitle)" />
         </MudTd>
         <MudTd DataLabel="Department">
-            <AutoCompleteComponent TModel="Core.Models.Department"
-                                   Variant="Variant.Text"
-                                   Label=""
-                                   SelectedItem="@context.Department"
-                                   SelectedItemChanged="@((Core.Models.Department? loc) => context.Department = loc)" />
+
+            <SelectComponent TModel="Core.Models.Department"
+                             Variant="Variant.Text"
+                             Label=""
+                             SelectedItem="@context.Department"
+                             SelectedItemChanged="@((Core.Models.Department? dep) => context.Department = dep)"
+                             DisplayProperty="BaseName" />
         </MudTd>
     </RowEditingTemplate>
 

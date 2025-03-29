@@ -13,7 +13,7 @@
 
     <ToolBarTemplate>
 
-        <CreateButtonComponent Href="/departments/add"
+        <CreateButtonComponent TModel="Core.Models.Department"
                                ButtonName="New Department" />
 
     </ToolBarTemplate>
@@ -66,12 +66,12 @@
                 For="@(() => context.Name)"/>
         </MudTd>
         <MudTd DataLabel="Location">
-            <AutoCompleteComponent 
-                TModel="Core.Models.Location"
-                Variant="Variant.Text"
-                Label=""
-                SelectedItem="@context.Location"
-                SelectedItemChanged="@((Core.Models.Location? loc) => context.Location = loc)"/>
+            <SelectComponent TModel="Core.Models.Location"
+                             Variant="Variant.Text"
+                             Label=""
+                             SelectedItem="@context.Location"
+                             SelectedItemChanged="@((Core.Models.Location? loc) => context.Location = loc)"
+                             DisplayProperty="BaseName" />
         </MudTd>
     </RowEditingTemplate>
 

@@ -13,11 +13,18 @@
 
     <ToolBarTemplate>
         
-        
+        <div class="d-flex justify-space-between align-items-center" style="width: 100%;">
 
-        <CreateButtonComponent
-            Href="/locations/add"
-            ButtonName="New Location"/>
+            <CreateButtonComponent TModel="Core.Models.Location"
+                                   ButtonName="New Location"
+                                   IsDisable="@IsLoading"
+                                   OnSaveSuccess="ReloadTable" />
+
+            <MudText Typo="Typo.h3">Location</MudText>
+
+            <div></div>
+        </div> 
+
 
     </ToolBarTemplate>
 

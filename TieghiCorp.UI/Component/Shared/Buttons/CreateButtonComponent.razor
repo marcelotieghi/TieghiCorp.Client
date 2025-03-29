@@ -1,7 +1,9 @@
-﻿<MudButton 
+﻿@typeparam TModel
+
+<MudButton @onclick="OpenDialogAsync"
     Variant="Variant.Filled"
     Color="Color.Primary"
     StartIcon="@Icons.Material.TwoTone.Add"
-    Href="@Href">
+    Disabled="IsDisable">
     @ButtonName
 </MudButton>

@@ -4,16 +4,8 @@
     <Inputs>
         <MudGrid>
             <MudItem xs="12">
-                <MudTextField
-                    @bind-Value="InputModel.Name"
-                    Label="Name"
-                    Variant="Variant.Outlined"
-                    MaxLength="100"
-                    Counter="100"
-                    Immediate="true"
-                    HelperText="Field required!"
-                    Clearable="true"
-                    For="@(() => InputModel.Name)"/>
+                <TextFieldComponent 
+                    Label="Name"/>
             </MudItem>
             <MudItem xs="12">
                 <AutoCompleteComponent

@@ -9,7 +9,10 @@ public partial class LocationTableComponent : TableComponent<Core.Models.Locatio
 {
     #region Properties
 
+    private bool IsLoading { get; set; }
+
     protected string SearchString = string.Empty;
+
     protected TableComponent<Core.Models.Location>? Table { get; set; }
 
     #endregion
@@ -27,6 +30,8 @@ public partial class LocationTableComponent : TableComponent<Core.Models.Locatio
     {
         try
         {
+            IsLoading = true;
+
             var result = await Services.ListAsync(
                 "v1/locations",
                 state.Page + 1,
@@ -46,6 +51,10 @@ public partial class LocationTableComponent : TableComponent<Core.Models.Locatio
         {
             Console.WriteLine($"Error during ServerReload: {ex.Message}");
             return new TableData<Core.Models.Location> { TotalItems = 0, Items = [] };
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
 

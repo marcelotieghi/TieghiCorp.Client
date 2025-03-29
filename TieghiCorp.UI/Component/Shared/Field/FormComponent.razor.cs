@@ -10,9 +10,14 @@ public partial class FormComponent<TModel> where TModel : BaseModel
 {
     #region Paramenters
 
-    [Parameter] public required RenderFragment Inputs { get; set; }
-    [Parameter] public object? Model { get; set; }
-    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter]
+    public required RenderFragment Inputs { get; set; }
+
+    [Parameter]
+    public object? Model { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
 
     #endregion
 
@@ -27,10 +32,12 @@ public partial class FormComponent<TModel> where TModel : BaseModel
 
     [Inject]
     public IServices<TModel> Handler { get; set; } = null!;
+
     [Inject]
     public ISnackbar Snackbar { get; set; } = null!;
-    [Inject]
-    public NavigationManager NavigationManager { get; set; } = null!;
+
+    [CascadingParameter]
+    public IMudDialogInstance MudDialog { get; set; } = null!;
 
     #endregion
 
@@ -48,7 +55,7 @@ public partial class FormComponent<TModel> where TModel : BaseModel
             if (result.Success)
             {
                 Snackbar.Add($"{typeof(TModel).Name} created successfully", Severity.Success);
-                NavigationManager.NavigateTo($"{typeof(TModel).Name}");
+                await OnSaveSuccess.InvokeAsync();
             }
             else
             {
@@ -63,12 +70,16 @@ public partial class FormComponent<TModel> where TModel : BaseModel
         finally
         {
             IsBusy = false;
+            MudDialog.Close();
         }
     }
 
-    private void HandleCancel() => NavigationManager.NavigateTo($"{typeof(TModel).Name}s");
+    private void HandleCancel() => MudDialog.Close();
 
     private bool IsFormValid() => EditForm?.IsValid ?? false;
 
     #endregion
+
+    [Parameter]
+    public EventCallback OnSaveSuccess { get; set; }
 }

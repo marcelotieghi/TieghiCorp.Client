@@ -99,16 +99,16 @@ public class Services<TEntity>(HttpClient http) : IServices<TEntity> where TEnti
         string? sortDirection = null,
         CancellationToken cancellationToken = default)
     {
-        url += $"?pageNumber={page}&pageSize={pageSize}";
+        url += $"?Page={page}&PageSize={pageSize}";
 
         if (!string.IsNullOrEmpty(searchTerm))
             url += $"&searchTerm={Uri.EscapeDataString(searchTerm)}";
 
         if (!string.IsNullOrEmpty(sortField))
-            url += $"&sortField={sortField}";
+            url += $"&SortField={sortField}";
 
         if (!string.IsNullOrEmpty(sortDirection))
-            url += $"&sortDirection={sortDirection}";
+            url += $"&SortDirection={sortDirection}";
 
         var result = await _http.GetFromJsonAsync<ApiPagedResult<TEntity>>(
             url,

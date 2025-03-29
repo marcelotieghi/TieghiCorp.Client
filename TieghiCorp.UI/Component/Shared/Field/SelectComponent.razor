@@ -1,0 +1,20 @@
+﻿@typeparam TModel
+
+<MudSelect T="TModel"
+           Value="SelectedItem"
+           ValueChanged="OnSelectedItemChanged"
+           ToStringFunc="@(e => e == null ? null : $"{e.BaseName}")"
+           Variant="@Variant"
+           Label="@Label"
+           Validation="@Validation"
+           HelperText="Field required">
+    @if (Items != null)
+    {
+        @foreach (var item in Items)
+        {
+            <MudSelectItem T="TModel" Value="item">
+                @GetDisplayValue(item)
+            </MudSelectItem>
+        }
+    }
+</MudSelect>

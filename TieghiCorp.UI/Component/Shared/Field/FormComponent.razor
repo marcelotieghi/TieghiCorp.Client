@@ -4,18 +4,13 @@
 
 <MudForm Model="@Model" OnValidSubmit="HandleSave" @ref="EditForm">
 
-    <MudCard Style="width: 75%; margin: auto" Class="px-5 mt-20 rounded" Outlined="true">
-        <MudCardHeader Class="d-flex justify-center">
-            <MudText Typo="Typo.h4" Color="Color.Primary">
-                @Title
-            </MudText>
-        </MudCardHeader>
+    <MudCard>
 
-        <MudCardContent>
+        <MudCardContent Class="px-0">
             @Inputs
         </MudCardContent>
 
-        <MudCardActions Class="px-4 mb-2 justify-end">
+        <MudCardActions Class="px-0 py-4 justify-end">
             @if (IsBusy)
             {
                 <MudProgressCircular Indeterminate="true" Color="Color.Primary" />

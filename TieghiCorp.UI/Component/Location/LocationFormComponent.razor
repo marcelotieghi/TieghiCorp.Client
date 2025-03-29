@@ -1,6 +1,8 @@
 ﻿@using TieghiCorp.UI.Component.Shared.Field
 
-<FormComponent TModel="Core.Models.Location" Model="@InputModel" Title="New Location">
+@inherits FormComponent<Core.Models.Location>
+
+<FormComponent TModel="Core.Models.Location" Model="@InputModel" OnSaveSuccess="OnSaveSuccess">
     <Inputs>
         <MudTextField
             @bind-Value="InputModel.Name"
@@ -16,4 +18,6 @@
 
 @code {
     protected Core.Models.Location InputModel { get; set; } = new();
+
+
 }
