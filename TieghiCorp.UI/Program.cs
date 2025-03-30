@@ -29,7 +29,8 @@ builder
     .Services
     .AddScoped(_ => new HttpClient
     {
-        BaseAddress = new Uri("https://tieghicorp-app-a4gfamagbwc6b0hb.westeurope-01.azurewebsites.net/")
+        //BaseAddress = new Uri("https://tieghicorp-app-a4gfamagbwc6b0hb.westeurope-01.azurewebsites.net/")
+        BaseAddress = new Uri("http://localhost:5140/")
     });
 
 await builder

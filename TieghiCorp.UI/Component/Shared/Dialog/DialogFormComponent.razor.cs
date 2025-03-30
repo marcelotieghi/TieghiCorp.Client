@@ -7,4 +7,7 @@ public partial class DialogFormComponent<TModel> where TModel : BaseModel
 {
     [Parameter]
     public EventCallback OnSaveSuccess { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
 }

@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
-using TieghiCorp.UI.Component.Shared.Field;
+﻿using TieghiCorp.UI.Component.Shared.Field;
 
 namespace TieghiCorp.UI.Component.Personnel;
 
-public partial class PersonnelFormComponent : ComponentBase
+public partial class PersonnelFormComponent : FormComponent<Core.Models.Personnel>
 {
-    protected Core.Models.Personnel InputModel { get; set; } = new();
-
-    private FormComponent<Core.Models.Personnel>? Form { get; set; }
+    private Core.Models.Personnel InputModel { get; set; } = new();
 
     private IEnumerable<string> Validate(string value)
     {

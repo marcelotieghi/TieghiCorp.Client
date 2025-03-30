@@ -1,30 +1,36 @@
 ﻿@using TieghiCorp.UI.Component.Shared
 @using TieghiCorp.UI.Component.Shared.Buttons
 
+
 @inherits TableComponent<Core.Models.Location>
 
-<TableComponent 
-    TModel="Core.Models.Location"
-    @ref="Table"
-    ServerReloadAsync="LoadLocationData"
-    RowEditPreview="BackupItem"
-    RowEditCancel="ResetItemToOriginalValues"
-    RowEditCommit="ItemHasBeenCommitted">
+<TableComponent TModel="Core.Models.Location" @ref="locationTableRef">
 
     <ToolBarTemplate>
-        
-        <div class="d-flex justify-space-between align-items-center" style="width: 100%;">
+       
+        <MudGrid Justify="Justify.SpaceBetween" Class="align-center">
+            <MudItem xs="3">
+                <CreateButtonComponent 
+                    TModel="Core.Models.Location"
+                    ButtonName="New Location"
+                    IsDisable="@IsLoading"
+                    OnSaveSuccess="ReloadTable" />
+            </MudItem>
 
-            <CreateButtonComponent TModel="Core.Models.Location"
-                                   ButtonName="New Location"
-                                   IsDisable="@IsLoading"
-                                   OnSaveSuccess="ReloadTable" />
+            <MudItem xs="2">
+                <MudText Typo="Typo.h4">Location</MudText>
+            </MudItem>
 
-            <MudText Typo="Typo.h3">Location</MudText>
-
-            <div></div>
-        </div> 
-
+            <MudItem xs="4">
+                <MudTextField 
+                    T="string" 
+                    ValueChanged="@(s=>OnSearch(s))" 
+                    Placeholder="Search" 
+                    Adornment="Adornment.Start"
+                    AdornmentIcon="@Icons.Material.Filled.Search"
+                    IconSize="Size.Medium"/>
+            </MudItem>
+        </MudGrid>
 
     </ToolBarTemplate>
 

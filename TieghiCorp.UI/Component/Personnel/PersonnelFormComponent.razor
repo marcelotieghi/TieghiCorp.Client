@@ -1,6 +1,8 @@
 ﻿@using TieghiCorp.UI.Component.Shared.Field
 
-<FormComponent TModel="Core.Models.Personnel" Model="@InputModel" Title="New Department">
+@inherits FormComponent<Core.Models.Personnel>
+
+<FormComponent TModel="Core.Models.Personnel" Model="@InputModel" OnSaveSuccess="OnSaveSuccess">
     <Inputs>
         <MudGrid>
             <MudItem xs="12">

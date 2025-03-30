@@ -1,70 +1,20 @@
-﻿using Microsoft.AspNetCore.Components;
-using MudBlazor;
-using TieghiCorp.UI.Component.Shared;
-using TieghiCorp.UI.Core.Services;
+﻿using TieghiCorp.UI.Component.Shared;
 
 namespace TieghiCorp.UI.Component.Location;
 
 public partial class LocationTableComponent : TableComponent<Core.Models.Location>
 {
-    #region Properties
+    private TableComponent<Core.Models.Location>? locationTableRef;
 
-    private bool IsLoading { get; set; }
-
-    protected string SearchString = string.Empty;
-
-    protected TableComponent<Core.Models.Location>? Table { get; set; }
-
-    #endregion
-
-    #region Services
-
-    [Inject]
-    private IServices<Core.Models.Location> Services { get; set; } = null!;
-
-    #endregion
-
-    #region Methods
-
-    protected async Task<TableData<Core.Models.Location>> LoadLocationData(TableState state, CancellationToken token)
+    private new async Task ReloadTable()
     {
-        try
-        {
-            IsLoading = true;
-
-            var result = await Services.ListAsync(
-                "v1/locations",
-                state.Page + 1,
-                state.PageSize,
-                SearchString,
-                state.SortLabel,
-                state.SortDirection == SortDirection.Descending ? "desc" : "asc",
-                token);
-
-            return new TableData<Core.Models.Location>
-            {
-                TotalItems = result.TotalCount,
-                Items = result.Data
-            };
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error during ServerReload: {ex.Message}");
-            return new TableData<Core.Models.Location> { TotalItems = 0, Items = [] };
-        }
-        finally
-        {
-            IsLoading = false;
-        }
+        if (locationTableRef != null)
+            await locationTableRef.ReloadTable();
     }
 
-    public async Task ReloadTable()
+    private new async Task OnSearch(string text)
     {
-        if (Table?.TableRef != null)
-        {
-            await Table.TableRef.ReloadServerData();
-        }
+        if (locationTableRef != null)
+            await locationTableRef.OnSearch(text);
     }
-
-    #endregion
 }

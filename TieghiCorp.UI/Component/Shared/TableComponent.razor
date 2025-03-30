@@ -4,22 +4,20 @@
 @inherits EditButtonComponent<TModel>
 @typeparam TModel
 
-@if (ServerReloadAsync is not null)
-{
+<div>
     <MudTable T="TModel"
-              @ref="TableRef"
-              ServerData="@ServerReloadAsync"
-              Class="mt-4"
-              Hover="true"
-              FixedHeader="true"
-              SelectOnRowClick="true"
-              CommitEditTooltip="Save"
-              CanCancelEdit="true"
-              IsEditRowSwitchingBlocked="true"
-              EditTrigger="TableEditTrigger.EditButton"
-              RowEditPreview="@RowEditPreview"
-              RowEditCancel="@RowEditCancel"
-              RowEditCommit="@RowEditCommit">
+        @ref="MudTableRef"
+        ServerData="LoadData"
+        Hover="true"
+        FixedHeader="true"
+        SelectOnRowClick="true"
+        CommitEditTooltip="Save"
+        CanCancelEdit="true"
+        IsEditRowSwitchingBlocked="true"
+        EditTrigger="TableEditTrigger.EditButton"
+        RowEditPreview="BackupItem"
+        RowEditCancel="ResetItemToOriginalValues"
+        RowEditCommit="ItemHasBeenCommitted">
 
         <ToolBarContent>
             @ToolBarTemplate
@@ -46,16 +44,4 @@
         </EditButtonContent>
 
     </MudTable>
-}
-
-<style>
-    table thead th:first-child,
-    table tbody tr td:first-child {
-        width: 100px;
-    }
-
-    table thead th:last-child,
-    table tbody tr td:last-child {
-        width: 125px;
-    }
-</style>
+</div>

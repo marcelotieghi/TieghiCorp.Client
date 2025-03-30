@@ -1,11 +1,19 @@
 ﻿@using TieghiCorp.UI.Component.Shared.Field
 
-<FormComponent TModel="Core.Models.Department" Model="@InputModel" Title="New Department">
+@inherits FormComponent<Core.Models.Department>
+
+<FormComponent TModel="Core.Models.Department" Model="@InputModel" OnSaveSuccess="OnSaveSuccess">
     <Inputs>
         <MudGrid>
             <MudItem xs="12">
-                <TextFieldComponent 
-                    Label="Name"/>
+                <MudTextField @bind-Value="InputModel.Name"
+                              Label="Name"
+                              Variant="Variant.Outlined"
+                              MaxLength="100"
+                              Counter="100"
+                              Immediate="true"
+                              HelperText="Field required"
+                              For="@(() => InputModel.Name)" />
             </MudItem>
             <MudItem xs="12">
                 <AutoCompleteComponent
@@ -19,3 +27,4 @@
         </MudGrid>
     </Inputs>
 </FormComponent>
+

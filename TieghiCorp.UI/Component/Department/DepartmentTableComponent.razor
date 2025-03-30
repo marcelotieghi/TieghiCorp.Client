@@ -4,17 +4,33 @@
 
 @inherits TableComponent<Core.Models.Department>
 
-<TableComponent TModel="Core.Models.Department"
-                @ref="Table"
-                ServerReloadAsync="LoadDepartmentnData"
-                RowEditPreview="BackupItem"
-                RowEditCancel="ResetItemToOriginalValues"
-                RowEditCommit="ItemHasBeenCommitted">
+<TableComponent TModel="Core.Models.Department" @ref="departmentTableRef">
 
     <ToolBarTemplate>
 
-        <CreateButtonComponent TModel="Core.Models.Department"
-                               ButtonName="New Department" />
+        <MudGrid Justify="Justify.SpaceBetween" Class="align-center">
+            <MudItem xs="3">
+                <CreateButtonComponent 
+                    TModel="Core.Models.Department"
+                    ButtonName="New Department"
+                    IsDisable="@IsLoading"
+                    OnSaveSuccess="ReloadTable" />
+            </MudItem>
+
+            <MudItem xs="2">
+                <MudText Typo="Typo.h4">Department</MudText>
+            </MudItem>
+
+            <MudItem xs="4">
+                <MudTextField 
+                    T="string"
+                    ValueChanged="@(s=>OnSearch(s))"
+                    Placeholder="Search"
+                    Adornment="Adornment.Start"
+                    AdornmentIcon="@Icons.Material.Filled.Search"
+                    IconSize="Size.Medium" />
+            </MudItem>
+        </MudGrid>
 
     </ToolBarTemplate>
 
@@ -34,9 +50,8 @@
             </MudTableSortLabel>
         </MudTh>
         <MudTh>
-            <MudTableSortLabel 
-                T="Core.Models.Department"
-                SortLabel="location">
+            <MudTableSortLabel T="Core.Models.Department"
+                SortLabel="locationname">
                 Location
             </MudTableSortLabel>
         </MudTh>
